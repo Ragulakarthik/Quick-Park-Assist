@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jakarta.validation.api" type="repository">
+    <properties maven-id="jakarta.validation:jakarta.validation-api:3.0.2" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jakarta.validation-api-3.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
