@@ -1,0 +1,423 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+header {
+	height: 90vh;
+}
+
+.heading-section {
+	align-self: center;
+	text-align: center;
+	padding: 5px;
+	margin-top: 50px;
+}
+
+.container {
+	height: 100%;
+	/* Ensure the container spans the full height of the viewport */
+	display: flex;
+	/* Use flexbox to center the content */
+	justify-content: center;
+	/* Center horizontally */
+	align-items: center;
+	/* Center vertically */
+}
+
+#welcome-test {
+	margin-top: 20px;
+}
+
+.jumbotron {
+	background: rgba(0, 0, 0, 0.6);
+	/* Semi-transparent black background for readability */
+	color: white;
+	/* Text color */
+	padding: 30px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+/* Styling for smaller heading */
+.small-heading {
+	font-size: 1.1rem;
+}
+
+/* Styling for large and bold headings */
+.large-heading {
+	font-size: 2rem;
+	font-weight: bold;
+	margin: 10px;
+}
+
+/* Styling for the dynamic booking words */
+#smart-parking-type {
+	width: 250px;
+	/* Set a fixed width */
+	height: 50px;
+	/* Set a fixed height */
+	line-height: 50px;
+	/* Vertically center the text */
+	overflow: hidden;
+	/* Hide overflowing text */
+	text-align: center;
+	/* Center text horizontally */
+	white-space: nowrap;
+	/* Prevent text wrapping */
+	font-size: 20px;
+	/* Adjust the font size as needed */
+	font-weight: bold;
+	/* Optional: Make text bold */
+	margin: 0 auto;
+	/* Center the container itself */
+	transition: opacity 0.5s ease;
+	/* Smooth opacity transition */
+	position: relative;
+	/* Ensure container alignment */
+}
+
+
+/* Cursor blink effect */
+@keyframes blink {
+	50% {
+		border-color: transparent;
+	}
+}
+
+/* Scaling effect for animation */
+@keyframes scaleEffect {
+	0% {
+		transform: scale(0.8);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+/* Navbar styles */
+.navbar-light .nav-link {
+	font-size: 13px;
+	margin-left: 10px;
+	color: white !important;
+	border-radius: 5px;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-brand {
+	text-transform: uppercase;
+	font-size: 25px;
+	font-weight: 600;
+}
+
+
+.btn-center {
+	border: none;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+/* Hover state for navbar links */
+.navbar-light .nav-link:hover {
+	background-color: rgb(235, 91, 0) !important;
+}
+
+/* Focus and active state for navbar links */
+.navbar-light .nav-link:focus,
+.navbar-light .nav-link.active {
+	background-color: rgb(235, 91, 0) !important;
+	color: white !important;
+}
+
+.btn {
+	background-color: rgb(235, 91, 0) !important;
+}
+
+#about-us {
+	margin: 0 auto;
+	padding: 10px 50px;
+}
+
+.about-text {
+	padding: 10px 30px;
+}
+
+/* Why Choose Us Section */
+/* Why Choose Us Section */
+#why-choose-us {
+    padding: 50px 20px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#why-choose-us h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+.aboutUs{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+@media (max-width:800px){
+    .aboutUs{
+           flex-direction:column;
+           gap:15px;
+    }
+}
+
+#why-choose-us p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.feature {
+    background: #004858;
+    padding: 20px;
+    color:#fff;
+    cursor: pointer;
+    width: calc(100% - 40px);
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.feature h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #666;
+}
+
+@media (max-width: 800px) {
+    .features {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+/* Testimonials Section */
+#client-testimonials {
+	background-color: #f9f9f9;
+	padding: 50px 20px;
+	text-align: center;
+}
+
+#client-testimonials .container {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+#client-testimonials h2 {
+	font-size: 28px;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.testimonials-wrapper {
+	overflow: hidden;
+	/* Hide extra testimonials */
+	width: 100%;
+}
+
+.testimonials {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	gap: 20px;
+}
+
+.testimonial {
+	flex: 0 0 48%;
+	/* Each testimonial takes 48% width for a 2-column layout */
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	text-align: left;
+}
+
+.testimonial p {
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+.client-info {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.client-info img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid #ff6f61;
+}
+
+.client-details h4 {
+	font-size: 16px;
+	margin: 0;
+	color: #333;
+}
+
+.client-details p {
+	font-size: 14px;
+	color: #666;
+}
+
+/* Navigation Dots */
+.testimonial-navigation {
+	margin-top: 20px;
+}
+
+.testimonial-navigation .nav-dot {
+	width: 12px;
+	height: 12px;
+	background-color: #ccc;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 5px;
+	cursor: pointer;
+}
+
+.testimonial-navigation .nav-dot.active {
+	background-color: #ff6f61;
+}
+
+/*FOLLOW US */
+/* Footer Section */
+#follow-us {
+	background: #004858;
+	color: #fff;
+	padding: 40px 20px;
+}
+
+#follow-us .container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.footer-content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.follow-us-section,
+.additional-links {
+	flex: 1;
+	min-width: 250px;
+}
+
+.follow-us-section h4,
+.additional-links h4 {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #ff6f61;
+}
+
+.follow-us-section p,
+.additional-links p {
+	font-size: 14px;
+	margin-bottom: 15px;
+}
+
+.social-media-links {
+	margin-top: 10px;
+}
+
+.social-media-links a {
+	margin: 0 5px;
+	color: #fff;
+	font-size: 18px;
+	transition: color 0.3s;
+}
+
+.social-media-links a:hover {
+	color: #ff6f61;
+}
+
+.additional-links a.footer-link {
+	display: inline-block;
+	margin-top: 5px;
+	color: #ff6f61;
+	text-decoration: none;
+}
+
+.additional-links a.footer-link:hover {
+	text-decoration: underline;
+}
+
+.footer-bottom {
+	text-align: center;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+@media (max-width: 768px) {
+	.jumbotron {
+		padding: 20px;
+	}
+
+	.about-text,
+	.aboutUsImage {
+		margin-bottom: 15px;
+	}
+
+	.features {
+		display: flex;
+		flex-direction:column;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items:center;
+	}
+
+	.features .feature {
+		flex: 1 1 calc(50% - 10px);
+		margin-bottom: 15px;
+	}
+}
+
+@media (max-width: 576px) {
+	.features .feature {
+		flex: 1 1 100%;
+	}
+}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+	<!--CSS LINKS-->
+	<link rel="stylesheet"  type="text/css" th:href="@{/css/HomeStyle.css}">
+	<link rel="stylesheet"  type="text/css" href="./css/HomeStyle.css">
+</head>
+<body>
+<header  th:style="'background: linear-gradient( rgb(0 14 38  / 70%), rgba(6 26 79 / 48%)),
+                url('+ @{/images/bgImage.jpg }+') no-repeat center center/cover; background-attachment:fixed;'">
+	<div class="container-fluid">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<a class="navbar-brand text-light" href="#">Smart Parking Booking</a>
+			<button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" th:style="'background: linear-gradient(to right,  #5f89ff, #9d7bfe)  no-repeat;' ">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link text-dark" th:href="@{/}" aria-current="page">HOME</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link text-dark" th:href="@{/dashboard}">DASHBOARD</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link text-dark" th:href="@{/smart-spots/add-spot}">SMARTSPOTS</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-dark" th:href="@{/bookingSpot/}">BOOKING</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-dark" th:href="@{/addon/new}">ADDON SERVICES</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-dark" th:href="@{/ev-charging/add}">EV CHARGING</a>
+					</li>
+					<li class="nav-item">
+						<a th:if = "${session.userIsThere == true}" class="nav-link text-dark" th:href="@{/logout}">LOGOUT</a>
+					</li>
+
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<!-- Middle Container -->
+	<div class="container">
+		<div class="jumbotron">
+			<!-- Smaller heading for "LET’S BID GOODBYE..." -->
+			<h1 class="small-heading">LET’S BID GOODBYE TO ALL THE PARKING PROBLEMS!</h1>
+
+			<!-- Larger and bold heading for "Smart Parking Application For" -->
+			<p class="large-heading">Smart Parking Application For</p>
+
+			<!-- Dynamic words here -->
+			<div id="smart-parking-type"></div>
+
+			<!-- Static welcome text -->
+			<p id="welcome-text">Show My Parking provides you with a smarter way to park when you're on the go.</p>
+
+			<div class="d-flex flex-row justify-content-center align-items-center" th:if="${session.userIsThere != true}">
+				<a class="btn  btn-md text-light me-4" th:href="@{/register}" role="button">Register Now</a>
+				<a class="btn  btn-md text-light" th:href="@{/login}" role="button">Login</a>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- ABOUT US SECTION -->
+<section id="about-us">
+	<div class=" d-flex flex-column flex-start">
+		<div class="text-left">
+			<h2>About Us</h2>
+			<p>We are a team of passionate tech enthusiasts, urban problem-solvers, and customer-focused innovators.</p>
+		</div>
+		<div class="aboutUs">
+			<div class="image">
+				<img th:src="@{/images/aboutUsImage.jpg}" class="aboutUsImage" alt="parkingCar Image"/>
+			</div>
+			<div class="about-text">
+				<h3>We Are Here For Help</h3>
+				<p>
+					We eliminate the hassle of searching and waiting for parking.
+					Leveraging advanced technology and intuitive design,
+					we deliver a seamless, efficient parking experience for all.
+				</p>
+				<p>
+					At SmartPark, we believe that parking shouldn't be a headache—it should be effortless.
+				</p>
+				<a href="#read-more" class="btn text-light">Read More</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--WHY CHOOSE US SECTION-->
+<section id="why-choose-us">
+	<div class="text-left">
+		<h2 class="text-left">Why Choose Us</h2>
+		<p class="text-left">
+			Trusted by thousands of users for reliable parking solutions. Partnerships with top parking operators to ensure maximum coverage.
+			A user-first approach, continuously improving based on your feedback.
+		</p>
+	</div>
+	<div class="features d-flex justify-content-between">
+		<div class="feature">
+			<img src="images/noFee.png" alt="No Booking">
+			<h3 class="text-light">No Booking Fees</h3>
+			<p class="text-light">No hidden charges. Just a simple, straightforward way to reserve your spot and save money.</p>
+		</div>
+		<div class="feature ">
+			<img src="images/onlinePayment.png" alt="Online Booking">
+			<h3 class="text-light">Online Payments</h3>
+			<p class="text-light">Pay securely and conveniently online, making parking a stress-free experience.</p>
+		</div>
+		<div class="feature">
+			<img src="images/easy.png" alt="Easy Booking">
+			<h3 class="text-light">Simple Booking Process</h3>
+			<p class="text-light">Find, book, and park with just a few clicks, ensuring a seamless experience every time.</p>
+		</div>
+	</div>
+</section>
+
+<!--TESTOMONIALS-->
+<section id="client-testimonials">
+	<h2 class="text-left">What Our Clients Say</h2>
+	<div class="container">
+		<div class="testimonials-wrapper">
+			<div class="testimonials">
+				<div class="testimonial">
+					<p>
+						"I love how convenient Smart Parking Spots is! I can easily find parking near important events, even during busy hours. The booking process is seamless, and I don’t have to deal with paying meters or machines anymore. It’s stress-free, and I’m always on time. Definitely my go-to app for parking!"
+					</p>
+					<div class="client-info">
+						<img th:src="@{/images/dave.jpg}" alt="Dave M">
+						<div class="client-details">
+							<h4>Dave M</h4>
+							<p>Commuter</p>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial">
+					<p>
+						"Smart Parking Spots has been a game-changer for me! I used to spend so much time searching for a parking spot. Now, I just book in advance and go straight in. It’s quick, easy, and reliable. No more worrying about parking again. Highly recommend it to anyone who hates the parking struggle."
+					</p>
+					<div class="client-info">
+						<img th:src="@{/images/hannah.jpg}" alt="Hannah T">
+						<div class="client-details">
+							<h4>Hannah T</h4>
+							<p>Event-Goer</p>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial">
+					<p>
+						"The app has simplified parking for me. I love the easy interface and reliable service. It’s especially helpful when attending crowded events, saving me so much time and stress."
+					</p>
+					<div class="client-info">
+						<img th:src="@{/images/ben.jpg}" alt="Ben R">
+						<div class="client-details">
+							<h4>Ben R</h4>
+							<p>Business Traveler</p>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial">
+					<p>
+						"I’ve never experienced such a smooth parking process before. From booking to payment, everything is effortless. Highly recommend this app to anyone who values convenience."
+					</p>
+					<div class="client-info">
+						<img th:src="@{/images/steve.jpg}" alt="Steve L">
+						<div class="client-details">
+							<h4>Steve L</h4>
+							<p>Frequent User</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="testimonial-navigation">
+		<span class="nav-dot active"></span>
+		<span class="nav-dot"></span>
+	</div>
+</section>
+<!--LAST STAY Connected SECTION-->
+<footer id="follow-us">
+	<div class="container">
+		<div class="footer-content">
+			<!-- Follow Us Section -->
+			<div class="follow-us-section">
+				<h4>Stay Connected</h4>
+				<div class="social-media-links">
+					<a href="#"><i class="fab fa-facebook"></i></a>
+					<a href="#"><i class="fab fa-twitter"></i></a>
+					<a href="#"><i class="fab fa-instagram"></i></a>
+					<a href="#"><i class="fab fa-linkedin"></i></a>
+				</div>
+			</div>
+
+			<!-- Additional Links Section -->
+			<div class="additional-links">
+				<h4>About Us</h4>
+				<p>At Smart Parking Spots, we’re revolutionizing parking with innovative solutions and seamless experiences. Discover smarter parking today!</p>
+				<a href="#about-us" class="footer-link">Learn More</a>
+			</div>
+
+			<div class="additional-links">
+				<h4>Online Booking</h4>
+				<p>Book your parking spot in just a few taps with Smart Parking Spots. Find flexible parking at your fingertips!</p>
+				<a href="#online-booking" class="footer-link">Book Now</a>
+			</div>
+
+			<div class="additional-links">
+				<h4>Contact Us</h4>
+				<p>For all your questions regarding parking, reach out to us anytime.</p>
+				<a href="#" class="footer-link">Email Us</a>
+				<p>Call: +91 1234567890</p>
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<p>&copy; 2024 All Rights Reserved by Smart Parking Spots</p>
+	</div>
+</footer>
+
+<script>
+	let parkingTypes = ["Event Booking", "Advance Booking", "Walk-in Booking"];
+    let index = 0;
+    let parkingElement = document.getElementById("smart-parking-type");
+    let letterInterval; // Store the interval to clear it when needed
+
+    function displayParkingTypes() {
+        if (letterInterval) {
+            clearInterval(letterInterval); // Clear any previous interval
+        }
+
+        let currentType = parkingTypes[index];
+        parkingElement.textContent = ""; // Clear any existing text
+        parkingElement.style.opacity = 1; // Ensure text is visible
+        let letterIndex = 0;
+
+        // Display each letter one by one
+        letterInterval = setInterval(() => {
+            if (letterIndex < currentType.length) {
+                parkingElement.textContent += currentType[letterIndex];
+                letterIndex++;
+            } else {
+                clearInterval(letterInterval); // Stop when all letters are displayed
+            }
+        }, 100); // Adjust the speed of letter appearance here (100ms per letter)
+
+        index = (index + 1) % parkingTypes.length; // Cycle through the parking types
+    }
+
+    // Change text every 4 seconds
+    setInterval(displayParkingTypes, 4000);
+
+    // Initial display call
+    displayParkingTypes();
+
+	//------------------------------------
+	// Function for Navigation
+const testimonialsContainer = document.querySelector('.testimonials');
+const navDots = document.querySelectorAll('.nav-dot');
+let currentSlideIndex = 0;
+
+// Function to update the visible testimonials
+function updateTestimonials(index) {
+  const offset = -index * 100; // Shift testimonials container to show two testimonials
+  testimonialsContainer.style.transform = `translateX(${offset}%)`;
+
+  // Update navigation dots
+  navDots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+// Add event listeners to navigation dots
+navDots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    currentSlideIndex = index;
+    updateTestimonials(currentSlideIndex);
+  });
+});
+
+// Auto-cycle testimonials (optional)
+setInterval(() => {
+  currentSlideIndex = (currentSlideIndex + 1) % 2; // Only two sets of testimonials (0 and 1)
+  updateTestimonials(currentSlideIndex);
+}, 5000); // Change every 5 seconds
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

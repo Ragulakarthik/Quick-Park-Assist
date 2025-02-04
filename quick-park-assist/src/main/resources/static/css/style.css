@@ -1,0 +1,226 @@
+/* Reset and body styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+   border-radius:5px;
+}
+.formSection{
+    background-color:#f9f9f9;
+    width:75%;
+    overflow:scroll;
+    overflow-y: auto;
+    padding:8px;
+}
+
+/* Navbar styles */
+.navbar-light .nav-link {
+    font-size:13px;
+    margin-left: 10px;
+    color: white !important;
+    border-radius:5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.main-row{
+    border-radius:5px;
+    min-height:100vh;
+    display: flex;
+    flex-wrap: nowrap;
+}
+/* Hover state for navbar links */
+.navbar-light .nav-link:hover {
+    background-color: rgb(235, 91, 0) !important;
+}
+
+/* Focus and active state for navbar links */
+.navbar-light .nav-link:focus, .navbar-light .nav-link.active {
+    background-color: rgb(235, 91, 0) !important;
+    color: white !important;
+}
+
+/* Navbar container styling */
+.nav-bar {
+    flex-wrap: nowrap;
+}
+.topNavbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.sidebar {
+    background-color: rgb(60, 61, 55);
+    color: white;
+    padding: 20px;
+    position: static;
+    width:25%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 15px 5px;
+  }
+
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+
+  .form-control {
+    border-radius: 5px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size:1em;
+    color: white;
+  }
+   /* CSS for dynamic badge styling */
+   .badge {
+       padding: 5px 10px;
+       border-radius: 5px;
+       font-size: 14px;
+       font-weight: bold;
+       text-align: center;
+       display: flex;
+       width:100%;
+       align-items:center;
+       justify-content:center;
+   }
+
+   .badge-pending {
+       background-color: #ffc107; /* Yellow */
+       color: #212529; /* Dark text */
+   }
+
+   .badge-completed {
+       background-color: #28a745; /* Green */
+       color: #fff; /* White text */
+   }
+   .badge-confirmed{
+    background-color: #00308F;
+    color:#fff;
+   }
+   .badge-cancelled {
+       background-color: #dc3545;
+       color: #fff;
+   }
+
+        .form-section button:hover {
+            background-color: #45a049;
+        }
+
+        .services-section {
+            width: 50%;
+            padding-left: 20px;
+        }
+
+        .services-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .addon-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+            color: white; /* Text color white for better contrast */
+            text-align: center;
+            height: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .addon-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .addon-card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .addon-card p {
+            margin: 5px 0;
+        }
+
+        /* Unique colors for each service */
+        .addon-card.interior-cleaning {
+            background-color: #4CAF50; /* Green for Interior Cleaning */
+        }
+
+        .addon-card.exterior-cleaning {
+            background-color: #2196F3; /* Blue for Exterior Cleaning */
+        }
+
+        .addon-card.car-spa {
+            background-color: #9C27B0; /* Purple for Car Spa */
+        }
+
+        .addon-card.polishing {
+            background-color: #FF9800; /* Orange for Polishing */
+        }
+
+        .addon-card.glass-treatment {
+            background-color: #FF5722; /* Red-Orange for Glass Treatment */
+        }
+
+        .addon-card.engine-cleaning {
+            background-color: #607D8B; /* Blue-Grey for Engine Cleaning */
+        }
+
+  @media (max-width: 480px) {
+    .sidebar {
+      height:auto;
+      text-align: center;
+      padding: 10px;
+      margin:10px 5px;
+    }
+
+    .sidebar a {
+      display: inline-block;
+      margin: 10px 10px;
+    }
+  }

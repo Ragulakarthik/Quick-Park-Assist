@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.quick_park_assist.serviceImplTest.StatsServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.quick_park_assist.serviceImplTest.StatsServiceImplTest

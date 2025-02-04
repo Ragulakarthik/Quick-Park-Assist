@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FAVICON ICONS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- CSS file -->
+    <link rel="stylesheet"  type="text/css" th:href="@{/css/style.css}">
+    <title>Parking Spot Booking</title>
+</head>
+<body th:style="'background: linear-gradient( rgb(0 14 38  / 70%), rgba(6 26 79 / 48%)),
+                url('+ @{/images/bgImage.jpg }+') no-repeat center center/cover; background-attachment:fixed;'">
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand text-light" href="#">Smart Parking Booking</a>
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" th:style="'background: linear-gradient(to right,  #5f89ff, #9d7bfe)  no-repeat;' ">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" th:href="@{/}" aria-current="page">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" th:href="@{/dashboard}">DASHBOARD</a>
+                </li>
+
+                <!-- Show SMARTSPOTS only for Spot Owners -->
+                <li class="nav-item" th:if="${session.userType == 'SPOT_OWNER'}">
+                    <a class="nav-link text-dark" th:href="@{/smart-spots/add-spot}">SMARTSPOTS</a>
+                </li>
+
+                <!-- Show these items only for Vehicle Owners -->
+                <li class="nav-item" th:if="${session.userType == 'VEHICLE_OWNER'}">
+                    <a class="nav-link text-dark" th:href="@{/bookingSpot/}">BOOKING</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" th:href="@{/addon/new}">ADDON SERVICES</a>
+                </li>
+                <li class="nav-item" th:if="${session.userType == 'VEHICLE_OWNER'}">
+                    <a class="nav-link text-dark" th:href="@{/ev-charging/add}">EV CHARGING</a>
+                </li>
+                <li class="nav-item">
+                    <a th:if="${session.userIsThere == true}" class="nav-link text-dark" th:href="@{/logout}">LOGOUT</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- Booking Form Container -->
+
+<div class="container" style="border-radius:5px;max-width:950px; padding:10px;">
+    <div class="main-row" style="border-radius:5px;s">
+        <!-- Menu Section -->
+        <div class="col-md-3 sidebar">
+            <h2 class="text-light">Menu</h2>
+            <div class="menu-btns">
+                <a th:href="@{/dashboard}" class="fw-bold fst-italic">OverView</a>
+                <a th:href="@{/profile/edit}">Update Profile</a>
+
+                <!-- Show only for Vehicle Owners -->
+                <div th:if="${session.userType == 'VEHICLE_OWNER'}">
+                    <a th:href="@{/vehicles/add}">Add Vehicle</a>
+                    <a th:href="@{/vehicles/editVehicle}">Manage Vehicles</a>
+                </div>
+
+                <!-- Show only for Spot Owners -->
+                <div th:if="${session.userType == 'SPOT_OWNER'}">
+                    <a th:href="@{/vehicles/search}">View User by Vehicle No.</a>
+                </div>
+
+                <a th:href="@{/auth/change-password}">Change Password</a>
+                <a th:href="@{/profileAction}">Delete Account</a>
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="col-md-9 bg-light formSection d-flex flex-column">
+            <div class="card w-100">
+                <h3 class="text-center bg-primary text-light w-100" style="padding:10px; border-radius:5px">User Profile Overview</h3>
+                <!-- Alert Messages -->
+                <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+                <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+                <!-- Stats for Vehicle Owners -->
+                <div th:if="${session.userType == 'VEHICLE_OWNER'}"
+                     class="d-flex justify-content-center align-items-center gap-3">
+                    <div>
+                        <div class="stats-card text-center p-3">
+                            <i class="fas fa-parking icon-large text-primary"></i>
+                            <h5>Spot Booked</h5>
+                            <h3 class="text-primary" id="availableSpots" th:text="${availableSpots}"></h3>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stats-card text-center p-3">
+                            <i class="fas fa-car icon-large text-success"></i>
+                            <h5>Your Vehicle's</h5>
+                            <h3 class="text-success" id="activeBookings" th:text="${activeBookings}"></h3>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stats-card text-center p-3">
+                            <i class="fas fa-clock icon-large text-info"></i>
+                            <h5>Total Hours</h5>
+                            <h3 class="text-info" id="totalHours" th:text="${totalHours}"></h3>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stats-card text-center p-3">
+                            <i class="fas fa-dollar-sign icon-large text-warning"></i>
+                            <h5>Amount Spent</h5>
+                            <h3 class="text-warning" id="amountSpent" th:text="${amountSpent}"></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats for Spot Owners -->
+                <div th:if="${session.userType == 'SPOT_OWNER'}"
+                     class="d-flex justify-content-center align-items-center gap-3">
+                    <div>
+                        <div class="stats-card text-center p-3">
+                            <i class="fas fa-parking icon-large text-primary"></i>
+                            <h5>Total Spots</h5>
+                            <h3 class="text-primary" id="totalSpots" th:text="${totalSpots}">0</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stats-card text-center p-3">
+                            <i class="fas fa-car icon-large text-success"></i>
+                            <h5>Current Bookings</h5>
+                            <h3 class="text-success" id="currentBookings" th:text="${currentBookings}">0</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stats-card text-center p-3">
+                            <i class="fas fa-dollar-sign icon-large text-warning"></i>
+                            <h5>Total Revenue</h5>
+                            <h3 class="text-warning" id="totalRevenue" th:text="${totalRevenue}">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-100 p-2">
+                <div class="card-header">
+                    <h5 class="card-title font-weight-bold">Recent Activity</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group" id="recentActivity">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer class="text-center">
+    &copy; 2024 All Rights Reserved by Smart Parking Spots
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<<script>
+    async function fetchStats() {
+        try {
+            const response = await fetch('/api/stats');
+            if (!response.ok) throw new Error('Failed to fetch stats');
+            const stats = await response.json();
+
+            document.getElementById('availableSpots').textContent = stats.availableSpots || 0;
+            document.getElementById('activeBookings').textContent = stats.activeBookings || 0;
+            document.getElementById('totalHours').textContent = stats.totalHours || 0;
+            document.getElementById('amountSpent').textContent = `$${stats.amountSpent || 0}`;
+        } catch (error) {
+            console.error('Error fetching stats:', error);
+        }
+    }
+
+    async function fetchRecentActivity() {
+       try {
+            const response = await fetch('/api/stats/recent-activity');
+            if (!response.ok) throw new Error('Failed to fetch recent activity');
+            const activities = await response.json();
+
+            const activityContainer = document.getElementById("recentActivity");
+            activityContainer.innerHTML = "";
+
+            activities.slice(0, 4).forEach(activity => { // Ensure only the top 4 are displayed
+                const activityElement = `
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <span>Spot: ${activity.spotName}</span>
+                            <small>Duration: ${activity.duration} hrs</small>
+                        </div>
+                        <p>Amount: $${activity.estimatedPrice}</p>
+                    </li>`;
+                activityContainer.insertAdjacentHTML("beforeend", activityElement);
+            });
+        } catch (error) {
+            console.error('Error fetching recent activity:', error);
+       }
+    }
+
+    function updateDashboard() {
+        fetchStats();
+        fetchRecentActivity();
+    }
+    function updateStats() {
+    fetch('/vehicles/api/stats')
+        .then(response => response.json())
+        .then(stats => {
+            if (document.getElementById('totalSpots')) {
+                // Update spot owner stats
+                document.getElementById('totalSpots').textContent = stats.totalSpots || 0;
+                document.getElementById('currentBookings').textContent = stats.currentBookings || 0;
+                document.getElementById('totalRevenue').textContent = `$${stats.totalRevenue || 0}`;
+            } else {
+                // Update vehicle owner stats
+                document.getElementById('availableSpots').textContent = stats.availableSpots || 0;
+                document.getElementById('activeBookings').textContent = stats.activeBookings || 0;
+                document.getElementById('totalHours').textContent = stats.totalHours || 0;
+                document.getElementById('amountSpent').textContent = `$${stats.amountSpent || 0}`;
+            }
+        })
+        .catch(error => console.error('Error fetching stats:', error));
+}
+
+// Update stats every 30 seconds
+setInterval(updateStats, 30000);
+// Initial update
+updateStats();
+
+    setInterval(updateDashboard, 30000);
+    updateDashboard();
+</script>
+
+
+</body>
+</html>

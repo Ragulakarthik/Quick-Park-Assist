@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger{36} - %msg%n%throwable</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <!-- Splunk HTTP Event Collector Appender -->
+        <SplunkHttp
+                name="quick-park-assist"
+                url="http://localhost:8088"
+                token="3e7a91d6-3933-4ecb-972d-058a8505906c"
+                host="localhost"
+                index="spring_dev"
+                type="raw"
+                source="quick-park-assist"
+                sourcetype="log4j"
+                messageFormat="text"
+                disableCertificateValidation="true">
+            <PatternLayout pattern="%m" />
+        </SplunkHttp>
+
+        <!-- File Appender (Rolling) -->
+        <RollingFile name="RollingFile"
+                     fileName="logs/app.log"
+                     filePattern="logs/app-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Application-Specific Logger -->
+        <Logger name="com.quick_park_assist" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="quick-park-assist"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+
+        <!-- Root Logger (All Logs) -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="quick-park-assist"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
